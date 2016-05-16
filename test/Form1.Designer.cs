@@ -57,7 +57,6 @@
             this.dGV_Accs.Name = "dGV_Accs";
             this.dGV_Accs.Size = new System.Drawing.Size(678, 125);
             this.dGV_Accs.TabIndex = 0;
-            this.dGV_Accs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_Accs_CellContentClick);
             this.dGV_Accs.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AccEdit);
             // 
             // Col_Name

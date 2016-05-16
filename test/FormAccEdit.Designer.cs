@@ -109,7 +109,6 @@
             this.Controls.Add(this.tB_login);
             this.Name = "FormAccEdit";
             this.Text = "Редактирование аккаунта";
-            this.Load += new System.EventHandler(this.FormAccEdit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -12,35 +12,23 @@ namespace test
 {
     public partial class FormAccEdit : Form
     {
-        /* public FormAccEdit()
-         {
-             InitializeComponent();
-         }*/
-
-        public FormAccEdit(string login, string pass, string proxy)
+        int row_id;
+        public FormAccEdit(int id, string login, string pass, string proxy)
         {
             InitializeComponent();
+            row_id = id;
             tB_login.Text = login;
             tB_pass.Text = pass;
             tB_proxy.Text = proxy;
         }
 
-        private void FormAccEdit_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_save_Click(object sender, EventArgs e)
         {
-            //string login = tB_login.Text.Trim();
-            //this.DialogResult = DialogResult.OK;
-            //Form1.ToLog("fgdfg");
-        }
-
-        public string ReturnData()
-        {
-            string name = "vfdsfsdf";
-            return name;
+            Form1 main = this.Owner as Form1;
+            if (main != null)
+            {
+                main.NewFromAccEdit(row_id, tB_login.Text.Trim(), tB_pass.Text.Trim(), tB_proxy.Text.Trim());
+            }
         }
     }
 }

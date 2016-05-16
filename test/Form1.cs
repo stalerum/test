@@ -13,16 +13,9 @@ namespace test
 {
     public partial class Form1 : Form
     {
-        FormAccEdit FormAccEdit;
-
         public Form1()
         {
             InitializeComponent();
-        }
-
-        private void dGV_Accs_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void btn_AddAccs_Click(object sender, EventArgs e)
@@ -88,28 +81,24 @@ namespace test
         // Редактировать аккаунт(Двойной клик по строке)
         private void AccEdit(object sender, DataGridViewCellEventArgs e)
         {
+            int id = Convert.ToInt32(dGV_Accs.CurrentRow.Index);
             string login = Convert.ToString(dGV_Accs.CurrentRow.Cells[0].Value);
             string pass = Convert.ToString(dGV_Accs.CurrentRow.Cells[1].Value);
             string proxy = Convert.ToString(dGV_Accs.CurrentRow.Cells[2].Value);
-            FormAccEdit FormAccEdit = new FormAccEdit(login, pass, proxy);
-            FormAccEdit.Show();
-
-            /*
-            if (FormAccEdit.DialogResult == DialogResult.OK)
-            {
-                ToLog("gfdgf");
-            }else
-            {
-                ToLog("нет данных");
-            }
-                ToLog(FormAccEdit.ReturnData());
-                */
-            
+            FormAccEdit formAccEdit = new FormAccEdit(id, login, pass, proxy);
+            formAccEdit.Owner = this;
+            formAccEdit.ShowDialog();            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ToLog(FormAccEdit.ReturnData());
+
+        }
+
+        // Изменить аккаунт в списке
+        public void NewFromAccEdit(int row_id, string login, string pass, string proxy)
+        {
+            ToLog(login);
         }
     }
 }
