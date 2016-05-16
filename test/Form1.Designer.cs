@@ -55,8 +55,10 @@
             this.Col_Status});
             this.dGV_Accs.Location = new System.Drawing.Point(12, 54);
             this.dGV_Accs.Name = "dGV_Accs";
+            this.dGV_Accs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dGV_Accs.Size = new System.Drawing.Size(678, 125);
             this.dGV_Accs.TabIndex = 0;
+            this.dGV_Accs.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_Accs_CellClick);
             this.dGV_Accs.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AccEdit);
             // 
             // Col_Name
@@ -117,7 +119,8 @@
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.FileName = "accounts";
+            this.openFileDialog1.Filter = "Текстовые файлы|*.txt";
             // 
             // Form1
             // 

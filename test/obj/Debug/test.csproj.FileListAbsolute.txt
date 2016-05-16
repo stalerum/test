@@ -18,3 +18,13 @@ C:\Users\Антон\Documents\Proj\test — копия\test\test\obj\Debug\test.
 C:\Users\Антон\Documents\Proj\test — копия\test\test\obj\Debug\test.csproj.GenerateResource.Cache
 C:\Users\Антон\Documents\Proj\test — копия\test\test\bin\Debug\test.exe
 C:\Users\Антон\Documents\Proj\test — копия\test\test\bin\Debug\test.pdb
+C:\Users\Екатерина\Documents\Git\test\test\bin\Debug\test.exe.config
+C:\Users\Екатерина\Documents\Git\test\test\obj\Debug\test.exe
+C:\Users\Екатерина\Documents\Git\test\test\obj\Debug\test.pdb
+C:\Users\Екатерина\Documents\Git\test\test\bin\Debug\test.exe
+C:\Users\Екатерина\Documents\Git\test\test\bin\Debug\test.pdb
+C:\Users\Екатерина\Documents\Git\test\test\obj\Debug\test.csprojResolveAssemblyReference.cache
+C:\Users\Екатерина\Documents\Git\test\test\obj\Debug\test.Form1.resources
+C:\Users\Екатерина\Documents\Git\test\test\obj\Debug\test.FormAccEdit.resources
+C:\Users\Екатерина\Documents\Git\test\test\obj\Debug\test.Properties.Resources.resources
+C:\Users\Екатерина\Documents\Git\test\test\obj\Debug\test.csproj.GenerateResource.Cache

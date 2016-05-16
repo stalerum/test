@@ -29,6 +29,7 @@ namespace test
             {
                 main.NewFromAccEdit(row_id, tB_login.Text.Trim(), tB_pass.Text.Trim(), tB_proxy.Text.Trim());
             }
+            this.Close();
         }
     }
 }

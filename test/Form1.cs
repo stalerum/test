@@ -21,35 +21,31 @@ namespace test
         private void btn_AddAccs_Click(object sender, EventArgs e)
         {
             ToLog("Открываем файл");
-            //openFileDialog1.ShowDialog();
-            FileStream file = new FileStream("C:/Users/Антон/Desktop/test/accs.txt", FileMode.Open, FileAccess.Read);
-            StreamReader reader = new StreamReader(file);
-            ToLog("Читаем файл");
-            //Читаем и добавляем в таблицу
-            try
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                int linesCount = 0;
-                while (!reader.EndOfStream)// читаем, пока не будет достигнут конец файла
+                StreamReader reader = new StreamReader(openFileDialog1.FileName);
+                ToLog("Читаем файл");
+                try
                 {
-                    string line = reader.ReadLine(); // читаем следующую строку
-                    string[] accs_data = line.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                    dGV_Accs.Rows.Add(accs_data[0], accs_data[1], accs_data[2], "10/500", "Работает");
-                    linesCount++; // увеличиваем счетчик
+                    int linesCount = 0;
+                    while (!reader.EndOfStream)// читаем, пока не будет достигнут конец файла
+                    {
+                        string line = reader.ReadLine(); // читаем следующую строку
+                        string[] accs_data = line.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                        dGV_Accs.Rows.Add(accs_data[0], accs_data[1], accs_data[2], "10/500", "Работает");
+                        linesCount++; // увеличиваем счетчик
+                    }
+                    ToLog("Добавлено " + linesCount + " акков");
                 }
-                ToLog("Добавлено "+ linesCount + " акков");
+                catch (Exception ex)
+                {
+                    ToLog(ex.Message);
+                }
+                finally
+                {
+                    reader.Close();
+                }
             }
-            catch (Exception ex)
-            {
-
-                ToLog(ex.Message);
-            }
-            finally
-            {
-                reader.Close();
-            }
-            //
-            string test = Convert.ToString(dGV_Accs.CurrentRow.Cells[1].Value);
-            ToLog(test);
         }
 
         // Добавление текста в лог
@@ -98,7 +94,15 @@ namespace test
         // Изменить аккаунт в списке
         public void NewFromAccEdit(int row_id, string login, string pass, string proxy)
         {
-            ToLog(login);
+            dGV_Accs.Rows[row_id].Cells[0].Value=login;
+            dGV_Accs.Rows[row_id].Cells[1].Value = pass;
+            dGV_Accs.Rows[row_id].Cells[2].Value = proxy;
+            
+        }
+
+        private void dGV_Accs_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
