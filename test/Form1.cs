@@ -32,7 +32,7 @@ namespace test
                     {
                         string line = reader.ReadLine(); // читаем следующую строку
                         string[] accs_data = line.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                        dGV_Accs.Rows.Add(accs_data[0], accs_data[1], accs_data[2], "10/500", "Работает");
+                        dGV_Accs.Rows.Add(accs_data[0], accs_data[1], accs_data[2], "0/0", "", "");
                         linesCount++; // увеличиваем счетчик
                     }
                     ToLog("Добавлено " + linesCount + " акков");
@@ -94,7 +94,7 @@ namespace test
         // Изменить аккаунт в списке
         public void NewFromAccEdit(int row_id, string login, string pass, string proxy)
         {
-            dGV_Accs.Rows[row_id].Cells[0].Value=login;
+            dGV_Accs.Rows[row_id].Cells[0].Value = login;
             dGV_Accs.Rows[row_id].Cells[1].Value = pass;
             dGV_Accs.Rows[row_id].Cells[2].Value = proxy;
             
@@ -103,6 +103,18 @@ namespace test
         private void dGV_Accs_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btn_saveProj_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_AddWork_Click(object sender, EventArgs e)
+        {
+            FormAddWork FormAddWork = new FormAddWork();
+            FormAddWork.Owner = this;
+            FormAddWork.ShowDialog();
         }
     }
 }
