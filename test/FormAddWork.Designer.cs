@@ -32,10 +32,21 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage_Mass = new System.Windows.Forms.TabPage();
             this.btn_mass_add = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             tabPage_Like = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabPage_Mass.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // tabPage_Like
+            // 
+            tabPage_Like.Location = new System.Drawing.Point(124, 4);
+            tabPage_Like.Name = "tabPage_Like";
+            tabPage_Like.Padding = new System.Windows.Forms.Padding(3);
+            tabPage_Like.Size = new System.Drawing.Size(511, 271);
+            tabPage_Like.TabIndex = 1;
+            tabPage_Like.Text = "Лайкинг";
+            tabPage_Like.UseVisualStyleBackColor = true;
             // 
             // tabControl1
             // 
@@ -55,6 +66,7 @@
             // 
             // tabPage_Mass
             // 
+            this.tabPage_Mass.Controls.Add(this.label1);
             this.tabPage_Mass.Controls.Add(this.btn_mass_add);
             this.tabPage_Mass.Location = new System.Drawing.Point(124, 4);
             this.tabPage_Mass.Name = "tabPage_Mass";
@@ -64,16 +76,6 @@
             this.tabPage_Mass.Text = "Подписки";
             this.tabPage_Mass.UseVisualStyleBackColor = true;
             // 
-            // tabPage_Like
-            // 
-            tabPage_Like.Location = new System.Drawing.Point(124, 4);
-            tabPage_Like.Name = "tabPage_Like";
-            tabPage_Like.Padding = new System.Windows.Forms.Padding(3);
-            tabPage_Like.Size = new System.Drawing.Size(511, 271);
-            tabPage_Like.TabIndex = 1;
-            tabPage_Like.Text = "Лайкинг";
-            tabPage_Like.UseVisualStyleBackColor = true;
-            // 
             // btn_mass_add
             // 
             this.btn_mass_add.Location = new System.Drawing.Point(160, 218);
@@ -82,6 +84,15 @@
             this.btn_mass_add.TabIndex = 0;
             this.btn_mass_add.Text = "Добавить задание и закрыть";
             this.btn_mass_add.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(18, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(123, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Колличество подписок";
             // 
             // FormAddWork
             // 
@@ -94,6 +105,7 @@
             this.Load += new System.EventHandler(this.FormAddWork_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage_Mass.ResumeLayout(false);
+            this.tabPage_Mass.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -103,5 +115,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage_Mass;
         private System.Windows.Forms.Button btn_mass_add;
+        private System.Windows.Forms.Label label1;
     }
 }

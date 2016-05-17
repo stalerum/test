@@ -13,6 +13,7 @@ namespace test
 {
     public partial class Form1 : Form
     {
+        int selectedAccsCount = 0; //кол-во выбранных акков
         public Form1()
         {
             InitializeComponent();
@@ -35,6 +36,7 @@ namespace test
                         dGV_Accs.Rows.Add(false, accs_data[0], accs_data[1], accs_data[2], "0/0", "", "");
                         linesCount++; // увеличиваем счетчик
                     }
+                    lbl_countAllAccs.Text = Convert.ToString(linesCount);
                     ToLog("Добавлено " + linesCount + " акков");
                 }
                 catch (Exception ex)
@@ -117,28 +119,82 @@ namespace test
             FormAddWork.ShowDialog();
         }
 
-        private void btn_AccDel_Click(object sender, EventArgs e)
+        // Выбраны ли аккаунты?
+        private bool isSelAcc()
         {
-            int num_rows = dGV_Accs.Rows.Count;
-            //dGV_Accs.CurrentRow
-            //ToLog(Convert.ToString(num_rows));
-            if (num_rows == 0)
+            if(selectedAccsCount < 1)
             {
-                MessageBox.Show("В списке отсутствуют аккаунты", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }/*
-            else if()
+                MessageBox.Show("Не выбран ни один аккаунт", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+            else
             {
-
-            }*/
+                return true;
+            }
             
         }
 
+        // Считаем выделенные аккаунты
+        private void CountSelectedAccs()
+        {
+            selectedAccsCount = 0;
+            for (int i = 0; i < dGV_Accs.Rows.Count; i++)
+            {
+                if (Convert.ToBoolean(dGV_Accs["Col_Check", i].Value) == true)
+                {
+                    selectedAccsCount++;
+                }
+            }
+            lbl_selAccs.Text = Convert.ToString(selectedAccsCount);
+        }
+        // Обработка события "Поставить галочку"
         private void dGV_Accs_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 0)
+            CountSelectedAccs();
+        }
+        private void dGV_Accs_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (((DataGridView)sender).IsCurrentCellDirty) ((DataGridView)sender).CommitEdit(DataGridViewDataErrorContexts.Commit);
+        }
+        // Выделить все аккаунты
+        private void btn_selAccsAll_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < dGV_Accs.Rows.Count; i++)
             {
-                MessageBox.Show("fdsfsd");
+                dGV_Accs["Col_Check", i].Value = true;
+            }
+            selectedAccsCount = dGV_Accs.Rows.Count;
+            lbl_selAccs.Text = Convert.ToString(selectedAccsCount);
+        }
+        // Снять все выделения
+        private void btn_deselAccsAll_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < dGV_Accs.Rows.Count; i++)
+            {
+                dGV_Accs["Col_Check", i].Value = false;
+            }
+            selectedAccsCount = 0;
+            lbl_selAccs.Text = "0";
+        }
+        // Удалить все аккаунты
+        private void btn_AccDel_Click(object sender, EventArgs e)
+        {
+            if (isSelAcc() == true)
+            {
+                ToLog("Удаляем " + Convert.ToString(selectedAccsCount) + " аккаунтов");
+                for (int i = 0; i < dGV_Accs.Rows.Count; i++)
+                {
+                    if (Convert.ToBoolean(dGV_Accs["Col_Check", i].Value) == true)
+                    {
+                        dGV_Accs.Rows.RemoveAt(i);
+                        i--;
+                    }
+                }
+                CountSelectedAccs();
+                lbl_countAllAccs.Text = Convert.ToString(dGV_Accs.Rows.Count); 
             }
         }
+
+        // ПОСМОТРЕТЬ ПОВЕДЕНИЕ ПРИ ПОВТОРНОМ ДОБАВЛЕНИИ АККАУНТОВ
     }
 }

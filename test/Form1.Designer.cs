@@ -29,13 +29,6 @@
         private void InitializeComponent()
         {
             this.dGV_Accs = new System.Windows.Forms.DataGridView();
-            this.btn_AddAccs = new System.Windows.Forms.Button();
-            this.tB_log = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btn_saveProj = new System.Windows.Forms.Button();
-            this.btn_AddWork = new System.Windows.Forms.Button();
-            this.btn_AccDel = new System.Windows.Forms.Button();
             this.Col_Check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Col_Login = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Col_pass = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,8 +36,19 @@
             this.Col_Progress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Col_Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Col_work = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_AddAccs = new System.Windows.Forms.Button();
+            this.tB_log = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btn_saveProj = new System.Windows.Forms.Button();
+            this.btn_AddWork = new System.Windows.Forms.Button();
+            this.btn_AccDel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.lbl_selAccs = new System.Windows.Forms.Label();
+            this.btn_selAccsAll = new System.Windows.Forms.Button();
+            this.btn_deselAccsAll = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.lbl_countAllAccs = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dGV_Accs)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,70 +76,7 @@
             this.dGV_Accs.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_Accs_CellClick);
             this.dGV_Accs.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AccEdit);
             this.dGV_Accs.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_Accs_CellValueChanged);
-            // 
-            // btn_AddAccs
-            // 
-            this.btn_AddAccs.Location = new System.Drawing.Point(12, 53);
-            this.btn_AddAccs.Name = "btn_AddAccs";
-            this.btn_AddAccs.Size = new System.Drawing.Size(174, 23);
-            this.btn_AddAccs.TabIndex = 1;
-            this.btn_AddAccs.Text = "Добавить аккаунты";
-            this.btn_AddAccs.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btn_AddAccs.UseVisualStyleBackColor = true;
-            this.btn_AddAccs.Click += new System.EventHandler(this.btn_AddAccs_Click);
-            // 
-            // tB_log
-            // 
-            this.tB_log.Location = new System.Drawing.Point(12, 285);
-            this.tB_log.Multiline = true;
-            this.tB_log.Name = "tB_log";
-            this.tB_log.Size = new System.Drawing.Size(678, 82);
-            this.tB_log.TabIndex = 2;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(214, 11);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "accounts";
-            this.openFileDialog1.Filter = "Текстовые файлы|*.txt";
-            // 
-            // btn_saveProj
-            // 
-            this.btn_saveProj.Location = new System.Drawing.Point(573, 12);
-            this.btn_saveProj.Name = "btn_saveProj";
-            this.btn_saveProj.Size = new System.Drawing.Size(117, 23);
-            this.btn_saveProj.TabIndex = 4;
-            this.btn_saveProj.Text = "Сохранить проект";
-            this.btn_saveProj.UseVisualStyleBackColor = true;
-            this.btn_saveProj.Click += new System.EventHandler(this.btn_saveProj_Click);
-            // 
-            // btn_AddWork
-            // 
-            this.btn_AddWork.Location = new System.Drawing.Point(12, 246);
-            this.btn_AddWork.Name = "btn_AddWork";
-            this.btn_AddWork.Size = new System.Drawing.Size(75, 23);
-            this.btn_AddWork.TabIndex = 5;
-            this.btn_AddWork.Text = "Задание";
-            this.btn_AddWork.UseVisualStyleBackColor = true;
-            this.btn_AddWork.Click += new System.EventHandler(this.btn_AddWork_Click);
-            // 
-            // btn_AccDel
-            // 
-            this.btn_AccDel.Location = new System.Drawing.Point(93, 246);
-            this.btn_AccDel.Name = "btn_AccDel";
-            this.btn_AccDel.Size = new System.Drawing.Size(75, 23);
-            this.btn_AccDel.TabIndex = 6;
-            this.btn_AccDel.Text = "Удалить";
-            this.btn_AccDel.UseVisualStyleBackColor = true;
-            this.btn_AccDel.Click += new System.EventHandler(this.btn_AccDel_Click);
+            this.dGV_Accs.CurrentCellDirtyStateChanged += new System.EventHandler(this.dGV_Accs_CurrentCellDirtyStateChanged);
             // 
             // Col_Check
             // 
@@ -188,30 +129,136 @@
             this.Col_work.Name = "Col_work";
             this.Col_work.ReadOnly = true;
             // 
+            // btn_AddAccs
+            // 
+            this.btn_AddAccs.Location = new System.Drawing.Point(12, 53);
+            this.btn_AddAccs.Name = "btn_AddAccs";
+            this.btn_AddAccs.Size = new System.Drawing.Size(174, 23);
+            this.btn_AddAccs.TabIndex = 1;
+            this.btn_AddAccs.Text = "Добавить аккаунты";
+            this.btn_AddAccs.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btn_AddAccs.UseVisualStyleBackColor = true;
+            this.btn_AddAccs.Click += new System.EventHandler(this.btn_AddAccs_Click);
+            // 
+            // tB_log
+            // 
+            this.tB_log.Location = new System.Drawing.Point(12, 285);
+            this.tB_log.Multiline = true;
+            this.tB_log.Name = "tB_log";
+            this.tB_log.Size = new System.Drawing.Size(678, 82);
+            this.tB_log.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(202, 53);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "accounts";
+            this.openFileDialog1.Filter = "Текстовые файлы|*.txt";
+            // 
+            // btn_saveProj
+            // 
+            this.btn_saveProj.Location = new System.Drawing.Point(573, 12);
+            this.btn_saveProj.Name = "btn_saveProj";
+            this.btn_saveProj.Size = new System.Drawing.Size(117, 23);
+            this.btn_saveProj.TabIndex = 4;
+            this.btn_saveProj.Text = "Сохранить проект";
+            this.btn_saveProj.UseVisualStyleBackColor = true;
+            this.btn_saveProj.Click += new System.EventHandler(this.btn_saveProj_Click);
+            // 
+            // btn_AddWork
+            // 
+            this.btn_AddWork.Location = new System.Drawing.Point(12, 246);
+            this.btn_AddWork.Name = "btn_AddWork";
+            this.btn_AddWork.Size = new System.Drawing.Size(75, 23);
+            this.btn_AddWork.TabIndex = 5;
+            this.btn_AddWork.Text = "Задание";
+            this.btn_AddWork.UseVisualStyleBackColor = true;
+            this.btn_AddWork.Click += new System.EventHandler(this.btn_AddWork_Click);
+            // 
+            // btn_AccDel
+            // 
+            this.btn_AccDel.Location = new System.Drawing.Point(93, 246);
+            this.btn_AccDel.Name = "btn_AccDel";
+            this.btn_AccDel.Size = new System.Drawing.Size(75, 23);
+            this.btn_AccDel.TabIndex = 6;
+            this.btn_AccDel.Text = "Удалить";
+            this.btn_AccDel.UseVisualStyleBackColor = true;
+            this.btn_AccDel.Click += new System.EventHandler(this.btn_AccDel_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 221);
+            this.label1.Location = new System.Drawing.Point(211, 226);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(116, 13);
             this.label1.TabIndex = 7;
             this.label1.Text = "Выделено аккаунтов:";
             // 
+            // lbl_selAccs
+            // 
+            this.lbl_selAccs.AutoSize = true;
+            this.lbl_selAccs.Location = new System.Drawing.Point(330, 226);
+            this.lbl_selAccs.Name = "lbl_selAccs";
+            this.lbl_selAccs.Size = new System.Drawing.Size(13, 13);
+            this.lbl_selAccs.TabIndex = 8;
+            this.lbl_selAccs.Text = "0";
+            // 
+            // btn_selAccsAll
+            // 
+            this.btn_selAccsAll.Location = new System.Drawing.Point(436, 223);
+            this.btn_selAccsAll.Name = "btn_selAccsAll";
+            this.btn_selAccsAll.Size = new System.Drawing.Size(124, 19);
+            this.btn_selAccsAll.TabIndex = 9;
+            this.btn_selAccsAll.Text = "Выделить все";
+            this.btn_selAccsAll.UseVisualStyleBackColor = true;
+            this.btn_selAccsAll.Click += new System.EventHandler(this.btn_selAccsAll_Click);
+            // 
+            // btn_deselAccsAll
+            // 
+            this.btn_deselAccsAll.Location = new System.Drawing.Point(566, 223);
+            this.btn_deselAccsAll.Name = "btn_deselAccsAll";
+            this.btn_deselAccsAll.Size = new System.Drawing.Size(124, 19);
+            this.btn_deselAccsAll.TabIndex = 9;
+            this.btn_deselAccsAll.Text = "Убрать все";
+            this.btn_deselAccsAll.UseVisualStyleBackColor = true;
+            this.btn_deselAccsAll.Click += new System.EventHandler(this.btn_deselAccsAll_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(128, 221);
+            this.label2.Location = new System.Drawing.Point(13, 226);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(13, 13);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "0";
+            this.label2.Size = new System.Drawing.Size(95, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Всего аккаунтов:";
+            // 
+            // lbl_countAllAccs
+            // 
+            this.lbl_countAllAccs.AutoSize = true;
+            this.lbl_countAllAccs.Location = new System.Drawing.Point(111, 226);
+            this.lbl_countAllAccs.Name = "lbl_countAllAccs";
+            this.lbl_countAllAccs.Size = new System.Drawing.Size(13, 13);
+            this.lbl_countAllAccs.TabIndex = 11;
+            this.lbl_countAllAccs.Text = "0";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(702, 379);
+            this.Controls.Add(this.lbl_countAllAccs);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.btn_deselAccsAll);
+            this.Controls.Add(this.btn_selAccsAll);
+            this.Controls.Add(this.lbl_selAccs);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_AccDel);
             this.Controls.Add(this.btn_AddWork);
@@ -246,7 +293,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Col_Status;
         private System.Windows.Forms.DataGridViewTextBoxColumn Col_work;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbl_selAccs;
+        private System.Windows.Forms.Button btn_selAccsAll;
+        private System.Windows.Forms.Button btn_deselAccsAll;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbl_countAllAccs;
     }
 }
 
