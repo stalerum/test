@@ -32,7 +32,7 @@ namespace test
                     {
                         string line = reader.ReadLine(); // читаем следующую строку
                         string[] accs_data = line.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                        dGV_Accs.Rows.Add(accs_data[0], accs_data[1], accs_data[2], "0/0", "", "");
+                        dGV_Accs.Rows.Add(false, accs_data[0], accs_data[1], accs_data[2], "0/0", "", "");
                         linesCount++; // увеличиваем счетчик
                     }
                     ToLog("Добавлено " + linesCount + " акков");
@@ -78,9 +78,9 @@ namespace test
         private void AccEdit(object sender, DataGridViewCellEventArgs e)
         {
             int id = Convert.ToInt32(dGV_Accs.CurrentRow.Index);
-            string login = Convert.ToString(dGV_Accs.CurrentRow.Cells[0].Value);
-            string pass = Convert.ToString(dGV_Accs.CurrentRow.Cells[1].Value);
-            string proxy = Convert.ToString(dGV_Accs.CurrentRow.Cells[2].Value);
+            string login = Convert.ToString(dGV_Accs.CurrentRow.Cells["Col_Login"].Value);
+            string pass = Convert.ToString(dGV_Accs.CurrentRow.Cells["Col_pass"].Value);
+            string proxy = Convert.ToString(dGV_Accs.CurrentRow.Cells["Col_proxy"].Value);
             FormAccEdit formAccEdit = new FormAccEdit(id, login, pass, proxy);
             formAccEdit.Owner = this;
             formAccEdit.ShowDialog();            
@@ -94,9 +94,9 @@ namespace test
         // Изменить аккаунт в списке
         public void NewFromAccEdit(int row_id, string login, string pass, string proxy)
         {
-            dGV_Accs.Rows[row_id].Cells[0].Value = login;
-            dGV_Accs.Rows[row_id].Cells[1].Value = pass;
-            dGV_Accs.Rows[row_id].Cells[2].Value = proxy;
+            dGV_Accs["Col_Login", row_id].Value = login;
+            dGV_Accs["Col_pass", row_id].Value = pass;
+            dGV_Accs["Col_proxy", row_id].Value = proxy;
             
         }
 
@@ -115,6 +115,30 @@ namespace test
             FormAddWork FormAddWork = new FormAddWork();
             FormAddWork.Owner = this;
             FormAddWork.ShowDialog();
+        }
+
+        private void btn_AccDel_Click(object sender, EventArgs e)
+        {
+            int num_rows = dGV_Accs.Rows.Count;
+            //dGV_Accs.CurrentRow
+            //ToLog(Convert.ToString(num_rows));
+            if (num_rows == 0)
+            {
+                MessageBox.Show("В списке отсутствуют аккаунты", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }/*
+            else if()
+            {
+
+            }*/
+            
+        }
+
+        private void dGV_Accs_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                MessageBox.Show("fdsfsd");
+            }
         }
     }
 }
